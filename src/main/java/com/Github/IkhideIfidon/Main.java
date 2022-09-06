@@ -3,6 +3,10 @@ package com.Github.IkhideIfidon;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -45,6 +49,7 @@ public class Main {
         DirectedGraph G2 = new DirectedGraph(G);
         System.out.println(G2);
         G.addEdge(6, 11);
+//        G.addEdge(2, 6);
         System.out.println(G);
         System.out.println(G2);
         System.out.println(G2.E());
@@ -56,9 +61,16 @@ public class Main {
         System.out.println(G.inComingEdges(1));
         System.out.println(G2);
         System.out.println(G);
-        System.out.println(G2.reverse());
         System.out.println(G.E());
-        System.out.println(G2.E());
+        System.out.println(G2.outGoingEdges(6));
+        System.out.println(G.reverse());
+
+        DirectedDFS directedDFS = new DirectedDFS(G, 0);
+        System.out.println(directedDFS.hasPath(2));
+        System.out.println(directedDFS.hasPath(G, 2, 6));
+
+
+        System.out.println(directedDFS.reachableFromSources(G, new LinkedList<>(List.of(1, 2, 6))));
 
     }
 }
