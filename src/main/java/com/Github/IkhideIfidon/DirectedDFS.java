@@ -7,7 +7,7 @@ import java.util.List;
 public class DirectedDFS {
 
     // Instance Variable
-    private boolean[] marked;
+    private final boolean[] marked;
 
     public DirectedDFS(DirectedGraph G, int source) {
         marked = new boolean[G.V()];
@@ -15,21 +15,15 @@ public class DirectedDFS {
     }
 
     /**
+     * Multiple-Source Reachability.
      * Find all vertices in Graph G that are reachable from sources.
      **/
-    public List<Integer> reachableFromSources(DirectedGraph G, Iterable<Integer> sources) {
+    public DirectedDFS(DirectedGraph G, Iterable<Integer> sources) {
         marked = new boolean[G.V()];
         for (int v : sources) {
             if (!marked[v])
                 dfs(G, v);
         }
-
-        List<Integer> reachable = new LinkedList<>();
-        for (int i = 0; i < G.V(); i++) {
-            if (marked[i])
-                reachable.add((i));
-        }
-        return reachable;
     }
 
     private void dfs(DirectedGraph G, int source) {

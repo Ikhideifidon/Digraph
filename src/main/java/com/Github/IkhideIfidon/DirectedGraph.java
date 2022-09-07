@@ -94,8 +94,8 @@ public class DirectedGraph {
             inComing.put(u, inList);
             E++;
         }
-
     }
+
     /**
      * Vertex v Neighbors are edges leaving a vertex v
      * **/
@@ -110,19 +110,17 @@ public class DirectedGraph {
     }
 
     public int inDegree(int v) {
-        int inDegree = 0;
         if ((0 <= v && v < V)) {
             return inComing.get(v).size();
         }
-        return inDegree;
+        return 0;
     }
 
     public int outDegree(int v) {
-        int outDegree = 0;
         if ((0 <= v && v < V)) {
             return outGoing.get(v).size();
         }
-        return outDegree;
+        return 0;
     }
 
     public List<Integer> outGoingEdges(int v) {

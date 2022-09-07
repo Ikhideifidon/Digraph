@@ -3,10 +3,7 @@ package com.Github.IkhideIfidon;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -18,8 +15,10 @@ public class Main {
         for (int[] edge : edges)
             G.addEdge(edge[0], edge[1]);
         System.out.println(G);
-        System.out.println(G.V());
-        System.out.println(G.E());
+        DirectedCycle cycle = new DirectedCycle(G);
+        System.out.println(cycle.hasCycle());
+        System.out.println(cycle.cycle());
+
 
 
         System.out.println(G.inDegree(4));
@@ -28,21 +27,6 @@ public class Main {
         System.out.println(G.neighbors(4));
         System.out.println(G.inComingEdges(4));
 
-        final String file = "src/main/resources/tinyDG.txt";
-        try (FileReader fileReader = new FileReader(file);
-             BufferedReader reader = new BufferedReader(fileReader) )
-
-        {
-            DirectedGraph G1 = new DirectedGraph(reader);
-            System.out.println("This is from the input stream:\n" + G1.neighbors(0));
-            System.out.println(G1.V());
-            System.out.println(G1.E());
-            System.out.println(G1);
-        }
-
-        catch (IOException e) {
-            e.printStackTrace();
-        }
 
         System.out.println(G.E());
 
@@ -70,7 +54,28 @@ public class Main {
         System.out.println(directedDFS.hasPath(G, 2, 6));
 
 
-        System.out.println(directedDFS.reachableFromSources(G, new LinkedList<>(List.of(1, 2, 6))));
+        final String file = "src/main/resources/tinyDG.txt";
+        try (FileReader fileReader = new FileReader(file);
+             BufferedReader reader = new BufferedReader(fileReader) )
+
+        {
+            DirectedGraph G1 = new DirectedGraph(reader);
+            System.out.println("This is from the input stream:\n" + G1.neighbors(0));
+            System.out.println(G1.V());
+            System.out.println(G1.E());
+            System.out.println(G1);
+        }
+
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        int source = 0;
+        DepthFirstPaths dfs = new DepthFirstPaths(G, source);
+        System.out.println(dfs.findPath(2));
+
+        BreadthFirstPaths bfs = new BreadthFirstPaths(G, source);
+        System.out.println(bfs.findPath(2));
 
     }
 }
