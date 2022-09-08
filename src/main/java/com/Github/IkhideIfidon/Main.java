@@ -12,12 +12,15 @@ public class Main {
                 {5, 4}, {6, 0}, {6, 4}, {6, 9}, {7, 6}, {7, 8}, {8, 7}, {8, 9}, {9, 10}, {9, 11},
                 {11, 4}, {11, 12}, {10, 12}, {12, 9}};
 
-        for (int[] edge : edges)
+
+        int[][] acyclic = {{0, 1}, {0, 6}, {0, 5}, {2, 0}, {2, 3}, {3, 5}, {5, 4}, {6, 4},
+                {6, 9}, {7, 6}, {8, 7}, {9, 10}, {9, 11}, {11, 12}, {9, 12}};
+
+        for (int[] edge : acyclic)
             G.addEdge(edge[0], edge[1]);
         System.out.println(G);
         DirectedCycle cycle = new DirectedCycle(G);
         System.out.println(cycle.hasCycle());
-        System.out.println(cycle.cycle());
 
 
 
@@ -76,6 +79,7 @@ public class Main {
 
         BreadthFirstPaths bfs = new BreadthFirstPaths(G, source);
         System.out.println(bfs.findPath(2));
+
 
     }
 }
