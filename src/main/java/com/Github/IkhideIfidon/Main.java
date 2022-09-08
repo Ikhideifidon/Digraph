@@ -16,11 +16,15 @@ public class Main {
         int[][] acyclic = {{0, 1}, {0, 6}, {0, 5}, {2, 0}, {2, 3}, {3, 5}, {5, 4}, {6, 4},
                 {6, 9}, {7, 6}, {8, 7}, {9, 10}, {9, 11}, {11, 12}, {9, 12}};
 
-        for (int[] edge : acyclic)
+        for (int[] edge : edges)
             G.addEdge(edge[0], edge[1]);
         System.out.println(G);
         DirectedCycle cycle = new DirectedCycle(G);
         System.out.println(cycle.hasCycle());
+
+        KosarajuSCC scc = new KosarajuSCC(G);
+        System.out.println(scc.count());
+        System.out.println(scc.stronglyConnected(0, 3));
 
 
 
@@ -79,6 +83,11 @@ public class Main {
 
         BreadthFirstPaths bfs = new BreadthFirstPaths(G, source);
         System.out.println(bfs.findPath(2));
+
+        Topological sort = new Topological(G);
+        System.out.println(sort.isDAG());
+        System.out.println(sort.order());
+
 
 
     }
