@@ -3,6 +3,7 @@ package com.Github.IkhideIfidon;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 
 public class Main {
@@ -22,11 +23,31 @@ public class Main {
         DirectedCycle cycle = new DirectedCycle(G);
         System.out.println(cycle.hasCycle());
 
-        KosarajuSCC scc = new KosarajuSCC(G);
+
+        DirectedGraph GG = new DirectedGraph(8);
+        int[][] GGedges = {{6, 0}, {6, 2}, {3, 4}, {6, 4}, {2, 0}, {0, 1}, {4, 5}, {5, 6},
+                {3, 7}, {7, 5}, {1, 2}, {7, 3}, {5, 0}};
+
+        for (int[] edge : GGedges)
+            GG.addEdge(edge[0], edge[1]);
+
+        System.out.println("\nKosaraju's");
+        KosarajuSCC scc = new KosarajuSCC(GG);
         System.out.println(scc.count());
-        System.out.println(scc.stronglyConnected(0, 3));
+        System.out.println(scc.stronglyConnected(0, 2));
+        System.out.println(Arrays.toString(scc.connectedComponents()));
+        System.out.println(scc.id(0));
+        System.out.println(scc.id(2));
 
+        TarjanSCC cc = new TarjanSCC(GG);
+        System.out.println("\nTarjan's");
+        System.out.println(cc.numberOfStronglyConnectedComponents());
+        System.out.println(cc.stronglyConnected(0, 2));
+        System.out.println(Arrays.toString(cc.connectedComponents()));
+        System.out.println(cc.id(0));
+        System.out.println(cc.id(2));
 
+        System.out.println();
 
         System.out.println(G.inDegree(4));
         System.out.println(G.outDegree(4));
@@ -39,7 +60,7 @@ public class Main {
 
         DirectedGraph G2 = new DirectedGraph(G);
         System.out.println(G2);
-        G.addEdge(6, 11);
+//        G.addEdge(6, 11);
 //        G.addEdge(2, 6);
         System.out.println(G);
         System.out.println(G2);
@@ -87,6 +108,13 @@ public class Main {
         Topological sort = new Topological(G);
         System.out.println(sort.isDAG());
         System.out.println(sort.order());
+
+
+
+
+
+
+
 
 
 
