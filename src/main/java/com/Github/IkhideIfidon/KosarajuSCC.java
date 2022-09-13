@@ -5,10 +5,19 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Strong Components must have the following properties:
+ * 1. Reflexive
+ * 2. Symmetric.
+ * 3. Transitive
+ * In a Digraph, if vertices v and w are strongly connected, there must be a path from v to w
+ * and w to v (not the same path). This is a presence of a cycle.
+ * A path from vertex v to vertex w (v-->w) does not denote strong connection.
+ */
 public class KosarajuSCC {
-    private final boolean[] marked;           // reached vertices
-    private final int[] id;                   // component identifiers
-    private int count;                  // number of strong components
+    private final boolean[] marked;                     // reached vertices
+    private final int[] id;                             // component identifiers
+    private int count;                                  // number of strong components
 
 
     public KosarajuSCC(DirectedGraph G) {
@@ -32,6 +41,7 @@ public class KosarajuSCC {
     }
     public boolean stronglyConnected(int v, int w) { return id[v] == id[w]; }
     public int id(int v) {
+        System.out.println(Arrays.toString(id));
         return id[v]; }
     public int count() { return count; }
 

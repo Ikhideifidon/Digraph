@@ -8,6 +8,12 @@ public class DirectedDFS {
     // Instance Variable
     private final boolean[] marked;
 
+    /**
+     * Given a digraph and a source vertex s, support queries of the form Is there a directed
+     * path from s to a given target vertex v?
+     * @param G: Digraph
+     * @param source: A known source.
+     */
     public DirectedDFS(DirectedGraph G, int source) {
         marked = new boolean[G.V()];
         dfs(G, source);

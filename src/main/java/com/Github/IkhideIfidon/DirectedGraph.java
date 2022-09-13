@@ -155,6 +155,12 @@ public class DirectedGraph {
         return sb.toString();
     }
 
+    public void printGraph() {
+        for (int v = 0; v < V; v++) {
+            System.out.println(v + "-->" + neighborsToString(v));
+        }
+    }
+
     private String neighborsToString(int v) {
         StringBuilder sb = new StringBuilder("[");
 

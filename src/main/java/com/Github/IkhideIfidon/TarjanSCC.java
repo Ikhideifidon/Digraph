@@ -1,6 +1,6 @@
 package com.Github.IkhideIfidon;
 
-import java.util.Arrays;
+
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
@@ -69,5 +69,7 @@ public class TarjanSCC {
             cc[scc[v]].add(v);
         return cc;
     }
+
+    public int[] scc() { return scc; }
 
 }

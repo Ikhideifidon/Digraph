@@ -20,6 +20,7 @@ public class Main {
         for (int[] edge : edges)
             G.addEdge(edge[0], edge[1]);
         System.out.println(G);
+        G.printGraph();
         DirectedCycle cycle = new DirectedCycle(G);
         System.out.println(cycle.hasCycle());
 
@@ -30,22 +31,25 @@ public class Main {
 
         for (int[] edge : GGedges)
             GG.addEdge(edge[0], edge[1]);
+        GG.printGraph();
 
         System.out.println("\nKosaraju's");
-        KosarajuSCC scc = new KosarajuSCC(GG);
+        KosarajuSCC scc = new KosarajuSCC(G);
         System.out.println(scc.count());
-        System.out.println(scc.stronglyConnected(0, 2));
+        int v = 0, u = 2;
+        System.out.println("Are vertices " + v + " and " + u + " Strongly Connected?\n"+ scc.stronglyConnected(v, u));
         System.out.println(Arrays.toString(scc.connectedComponents()));
         System.out.println(scc.id(0));
-        System.out.println(scc.id(2));
+        System.out.println(scc.id(7));
 
-        TarjanSCC cc = new TarjanSCC(GG);
+        TarjanSCC cc = new TarjanSCC(G);
         System.out.println("\nTarjan's");
         System.out.println(cc.numberOfStronglyConnectedComponents());
-        System.out.println(cc.stronglyConnected(0, 2));
+        System.out.println("Are vertices " + v + " and " + u + " Strongly Connected?\n"+ cc.stronglyConnected(v, u));
         System.out.println(Arrays.toString(cc.connectedComponents()));
         System.out.println(cc.id(0));
-        System.out.println(cc.id(2));
+        System.out.println(cc.id(1));
+        System.out.println(Arrays.toString(cc.scc()));
 
         System.out.println();
 
@@ -108,6 +112,10 @@ public class Main {
         Topological sort = new Topological(G);
         System.out.println(sort.isDAG());
         System.out.println(sort.order());
+
+
+        TransitiveClosure tc = new TransitiveClosure(G);
+        System.out.println(tc.reachable(1, 6));
 
 
 
