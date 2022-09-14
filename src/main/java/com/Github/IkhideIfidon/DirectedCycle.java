@@ -44,7 +44,7 @@ public class DirectedCycle {
     }
 
     public boolean hasCycle() {
-        return  cycle != null;
+        return  cycle == null;
     }
 
     public Iterable<Integer> cycle() { return cycle; }

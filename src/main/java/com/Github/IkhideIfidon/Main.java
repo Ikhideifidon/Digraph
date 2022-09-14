@@ -14,16 +14,14 @@ public class Main {
                 {11, 4}, {11, 12}, {10, 12}, {12, 9}};
 
 
-        int[][] acyclic = {{0, 1}, {0, 6}, {0, 5}, {2, 0}, {2, 3}, {3, 5}, {5, 4}, {6, 4},
+         /*
+                int[][] acyclic = {{0, 1}, {0, 6}, {0, 5}, {2, 0}, {2, 3}, {3, 5}, {5, 4}, {6, 4},
                 {6, 9}, {7, 6}, {8, 7}, {9, 10}, {9, 11}, {11, 12}, {9, 12}};
+         **/
 
         for (int[] edge : edges)
             G.addEdge(edge[0], edge[1]);
         System.out.println(G);
-        G.printGraph();
-        DirectedCycle cycle = new DirectedCycle(G);
-        System.out.println(cycle.hasCycle());
-
 
         DirectedGraph GG = new DirectedGraph(8);
         int[][] GGedges = {{6, 0}, {6, 2}, {3, 4}, {6, 4}, {2, 0}, {0, 1}, {4, 5}, {5, 6},
@@ -64,8 +62,6 @@ public class Main {
 
         DirectedGraph G2 = new DirectedGraph(G);
         System.out.println(G2);
-//        G.addEdge(6, 11);
-//        G.addEdge(2, 6);
         System.out.println(G);
         System.out.println(G2);
         System.out.println(G2.E());
@@ -115,16 +111,10 @@ public class Main {
 
 
         TransitiveClosure tc = new TransitiveClosure(G);
-        System.out.println(tc.reachable(1, 6));
+        System.out.println(tc.reachable(0, 5));
 
-
-
-
-
-
-
-
-
-
+        TransitiveClosureMatrix tcm = new TransitiveClosureMatrix(G);
+        System.out.println(Arrays.deepToString(tcm.transitiveClosure()));
+        System.out.println(tcm.reachable(0, 5));
     }
 }
